@@ -1,0 +1,168 @@
+/*
+ * Reel: the seek bar is the bottom edge of the box, always shown, and the
+ * buttons sit on top of it and fade when the pointer rests. The time left
+ * goes with the buttons, and the start button is a disc. A narrow box
+ * keeps play, the time left and fullscreen, and drops the rest in tiers.
+ */
+mattebox-player {
+  display: block;
+  /* The tiers below are container queries on the player's width. */
+  container-type: inline-size;
+  --mbx-surface: #0b0c0e;
+  --mbx-text: #f3ede4;
+  --mbx-muted: #9aa09c;
+  --mbx-accent: #e0543c;
+  --mbx-radius: 3px;
+}
+
+/* The bar itself never fades: the seek bar is part of the picture's frame.
+   The shade is the foot of the box, under both rows, and it goes with the
+   buttons: a layer of the bar's own, behind its rows, faded when idle. */
+mbx-control-bar {
+  padding: 0;
+  gap: 0;
+  background: none;
+  isolation: isolate;
+}
+
+mbx-control-bar::before {
+  content: "";
+  position: absolute;
+  inset: -32px 0 0;
+  z-index: -1;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+mbx-control-bar[idle]::before {
+  opacity: 0;
+}
+
+mbx-control-bar[idle] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The rows swap: buttons first, the seek bar on the floor. The buttons
+   are what goes when the pointer rests. */
+mbx-control-bar::part(buttons-row) {
+  order: 1;
+  /* The inset is a margin, not a padding: the bar measures the room it has
+     for its buttons with the row's clientWidth, which a padding is inside. */
+  margin: 0 8px;
+  padding: 32px 0 2px;
+  transition: opacity 0.2s;
+}
+
+mbx-control-bar[idle]::part(buttons-row) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The seek row is later on screen but earlier in the DOM, so the buttons
+   row would paint over the thumbnail tile that rises from it. A layer of
+   its own puts the tile on top. */
+mbx-control-bar::part(seek-row) {
+  order: 2;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Edge to edge, a thin track that thickens under the pointer, the thumb only then. */
+mbx-seek-bar::part(slider) {
+  height: 16px;
+  border-radius: 0;
+}
+
+mbx-seek-bar::part(rail) {
+  left: 0;
+  right: 0;
+}
+
+mbx-seek-bar::part(track) {
+  top: auto;
+  bottom: 0;
+  height: 4px;
+  transform: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.25);
+  transition: height 0.15s;
+}
+
+mbx-seek-bar:hover::part(track),
+mbx-seek-bar[dragging]::part(track) {
+  height: 8px;
+}
+
+mbx-seek-bar::part(thumb) {
+  top: auto;
+  bottom: -2px;
+  width: 12px;
+  height: 12px;
+  margin: 0 0 0 -6px;
+  background: var(--mbx-accent);
+  box-shadow: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+mbx-seek-bar:hover::part(thumb),
+mbx-seek-bar[dragging]::part(thumb) {
+  opacity: 1;
+}
+
+/* The thumbnail tile sits above the strip. */
+mbx-seek-bar::part(preview) {
+  margin-bottom: 12px;
+}
+
+/* The tiers. Below 520px the menus and picture in picture go; below 400px
+   the volume and the subtitles go too. Play, the time left and fullscreen
+   stay at any width. The bar's own collapse, by priority, is the safety
+   net between the steps. */
+@container (width < 520px) {
+  mbx-speed-menu,
+  mbx-chapters-menu,
+  mbx-audio-menu,
+  mbx-quality-menu,
+  mbx-pip-button {
+    display: none;
+  }
+}
+
+@container (width < 400px) {
+  mbx-volume,
+  mbx-subtitles-menu {
+    display: none;
+  }
+}
+
+/* The time left, among the buttons. */
+mbx-remaining-time {
+  margin-right: 8px;
+  color: var(--mbx-muted);
+  font:
+    500 13px / 1 ui-monospace,
+    "JetBrains Mono",
+    monospace;
+}
+
+/* The start button is a disc, on a backdrop heavy enough that the picture
+   does not show through it. Its own margin centres a 104 by 64 box, so the
+   margin follows the new size. */
+mbx-start-button {
+  margin: -36px 0 0 -36px;
+}
+
+mbx-start-button::part(button) {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(11, 12, 14, 0.75);
+}
+
+mbx-start-button::part(button):hover {
+  background: rgba(11, 12, 14, 0.9);
+}

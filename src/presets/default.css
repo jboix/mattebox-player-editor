@@ -1,0 +1,30 @@
+/*
+ * The player's look is page CSS. The tokens below are set on the element
+ * and inherited by every control; ::part() rules reach inside a control.
+ * These are the defaults. Change one and the preview follows.
+ */
+mattebox-player {
+  display: block;
+  --mbx-surface: #101114;
+  --mbx-text: #f2f3f5;
+  --mbx-muted: #9aa0a6;
+  --mbx-accent: #5b8cff;
+  --mbx-error: #ffb4ab;
+  --mbx-live: #ff4d4d;
+  --mbx-radius: 4px;
+  --mbx-gap: 10px;
+  --mbx-pad: 8px;
+  --mbx-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* The seek bar's thumbnail tile, in pixels. */
+  --mbx-preview-width: 160px;
+}
+
+/* A control by its tag, its insides by their part. */
+mbx-play-button::part(button) {
+  border-radius: var(--mbx-radius);
+}
+
+/* State is an attribute on the element, so a selector reads it. */
+mattebox-player[playing] mbx-play-button::part(icon) {
+  fill: var(--mbx-text);
+}

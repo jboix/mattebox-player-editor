@@ -1,0 +1,83 @@
+/*
+ * Round: a pill bar floating over the picture, circular buttons, and an
+ * accent that fills the play button. No start button: the play button is
+ * large enough to be the one.
+ */
+mattebox-player {
+  display: block;
+  --mbx-surface: #1b1e22;
+  --mbx-text: #ffffff;
+  --mbx-muted: #a7adb3;
+  --mbx-accent: #7fd0b4;
+  --mbx-radius: 999px;
+}
+
+mbx-control-bar {
+  inset: auto 16px 16px;
+  padding: 6px 14px 10px;
+  gap: 2px;
+  border-radius: 28px;
+  background: rgba(16, 17, 20, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+mbx-control-bar::part(buttons-row) {
+  gap: 4px;
+}
+
+mbx-current-time,
+mbx-duration {
+  font-size: 13px;
+}
+
+mbx-play-button::part(button) {
+  width: 44px;
+  height: 44px;
+  color: #101114;
+  background: var(--mbx-accent);
+}
+
+mbx-seek-bar::part(track) {
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* The border is part of the size, so the thumb stays centred on the track. */
+mbx-seek-bar::part(thumb) {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 3px solid var(--mbx-text);
+  background: var(--mbx-accent);
+  box-shadow: none;
+}
+
+/* The page's own glyphs are slotted children, sized like the built-in ones. */
+mbx-play-button svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+/* The radius token is a pill, which a popup, its items and the seek bar's
+   tooltip should not be: a chapter title in a pill runs into the curve. */
+mbx-subtitles-menu::part(popup),
+mbx-quality-menu::part(popup) {
+  border-radius: 16px;
+  padding: 8px;
+}
+
+mbx-seek-bar::part(preview) {
+  padding: 6px 12px;
+  border-radius: 14px;
+}
+
+mbx-subtitles-menu::part(item),
+mbx-quality-menu::part(item) {
+  border-radius: 10px;
+}
+
+mbx-error-screen::part(retry) {
+  padding: 0 20px;
+}

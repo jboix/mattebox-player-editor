@@ -1,0 +1,17 @@
+<!-- Play and the skips in the middle of the picture, in a cluster of the page's own; a thin bar under them. The time left and live leave the seek row with slot="" and sit with the buttons. -->
+<mattebox-player src="https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8" poster="https://storage.googleapis.com/shaka-asset-icons/tears_of_steel.png" chapters="https://jboix.github.io/mattebox-player/chapters/tears-of-steel.vtt" crossorigin="anonymous" controls="custom">
+  <mbx-error-screen></mbx-error-screen>
+  <div class="cluster">
+    <mbx-skip-button seconds="-10"></mbx-skip-button>
+    <mbx-play-button></mbx-play-button>
+    <mbx-skip-button seconds="10"></mbx-skip-button>
+  </div>
+  <mbx-control-bar>
+    <mbx-seek-bar></mbx-seek-bar>
+    <mbx-remaining-time slot=""></mbx-remaining-time>
+    <mbx-live-button slot=""></mbx-live-button>
+    <mbx-spacer></mbx-spacer>
+    <mbx-pip-button></mbx-pip-button>
+    <mbx-fullscreen-button></mbx-fullscreen-button>
+  </mbx-control-bar>
+</mattebox-player>

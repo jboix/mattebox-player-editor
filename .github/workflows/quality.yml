@@ -1,0 +1,93 @@
+name: Quality
+
+on:
+  merge_group:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - name: Install dependencies
+        env:
+          HUSKY: '0'
+        run: npm ci
+      # Every step is a package script, the same ones `npm run verify` chains,
+      # so the hook and CI cannot drift apart.
+      - name: Lint and format
+        run: npm run lint
+      - name: Docs format and links
+        run: npm run docs:check
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Boundary rules
+        run: npm run depcruise
+      - name: Dead code
+        run: npm run knip
+      - name: Build
+        run: npm run build
+      - name: Tests (with coverage)
+        run: npm run test -- --coverage
+      - name: Report Coverage
+        if: github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@c4bbc33a89b7ace0e63d35f1f7d4bcee31155a73 # v2
+
+  commitlint:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - name: Install dependencies
+        env:
+          HUSKY: '0'
+        run: npm ci
+      - name: Lint commit messages (Conventional Commits)
+        run: |
+          npx commitlint \
+            --from "${{ github.event.pull_request.base.sha }}" \
+            --to "${{ github.event.pull_request.head.sha }}" --verbose
+
+  # The ruleset on main requires a check named `quality`, and Actions reports
+  # per job, so this job is the one name that stands for the whole workflow.
+  # commitlint is skipped outside pull requests, so a skipped dependency
+  # counts as passing; only a failure or a cancellation fails it.
+  quality:
+    needs: [verify, commitlint]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions: {}
+    steps:
+      - name: Check every gate
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1

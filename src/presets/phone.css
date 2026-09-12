@@ -1,0 +1,112 @@
+/*
+ * Phone: the play button in the middle of the picture with a skip on
+ * each side, and a thin bar at the bottom: the seek bar on its own row,
+ * the time left, live, picture in picture and fullscreen on the row under it.
+ * A very narrow box keeps the play button and drops the skips. The cluster comes and goes with the bar. Hold
+ * the preview to 9:16 to see it as a phone would.
+ */
+mattebox-player {
+  display: block;
+  /* The skips below go by a container query on the player's width. */
+  container-type: inline-size;
+  --mbx-surface: #000000;
+  --mbx-text: #ffffff;
+  --mbx-muted: #b3b8bd;
+  --mbx-accent: #ffffff;
+  --mbx-radius: 999px;
+}
+
+/* The cluster is an element of the page's own inside the player, placed
+   over the picture. It takes the player's text colour, since it inherits
+   the page's and not the bar's. The bar sets `idle` on the player as well
+   as on itself, so the cluster can follow it. */
+.cluster {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  transform: translate(-50%, -50%);
+  color: var(--mbx-text);
+  transition: opacity 0.2s;
+}
+
+mattebox-player[idle] .cluster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Below 250px the cluster would touch the edges, so the skips go and the
+   play button stays alone in the middle. */
+@container (width < 250px) {
+  .cluster mbx-skip-button {
+    display: none;
+  }
+}
+
+/* The backdrops are heavy enough that the picture does not show through. */
+.cluster mbx-play-button::part(button) {
+  width: 76px;
+  height: 76px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.cluster mbx-play-button::part(icon) {
+  width: 40px;
+  height: 40px;
+}
+
+.cluster mbx-skip-button::part(button) {
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.cluster mbx-skip-button::part(icon) {
+  width: 28px;
+  height: 28px;
+}
+
+/* A thin bar: the seek bar alone on its row, the time and live at the
+   left of the row under it, two buttons at its right. */
+mbx-control-bar {
+  padding: 24px 12px 6px;
+  gap: 0;
+}
+
+mbx-control-bar::part(seek-row) {
+  gap: 10px;
+}
+
+/* The seek bar's rail sits 8px inside its slider, room for the thumb to
+   overhang, so the time takes the same inset to start where the track
+   starts. */
+mbx-remaining-time {
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+mbx-seek-bar::part(track) {
+  height: 3px;
+}
+
+/* The radius token is a pill, which the seek bar's tooltip should not be:
+   a chapter title in a pill runs into the curve. */
+mbx-seek-bar::part(preview) {
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+mbx-seek-bar::part(thumb) {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+}
+
+mbx-pip-button::part(button),
+mbx-fullscreen-button::part(button) {
+  width: 36px;
+  height: 36px;
+}
