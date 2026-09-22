@@ -94,7 +94,6 @@ const TAGS = new Set([
   'mbx-audio-menu',
   'mbx-subtitles-menu',
   'mbx-drm-badge',
-  'mbx-panels',
   'mbx-diagnostics',
 ]);
 

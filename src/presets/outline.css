@@ -1,0 +1,48 @@
+/*
+ * Outline: every glyph replaced by the page's own, drawn in strokes. A
+ * control offers a slot per state (icon-play, icon-pause, icon-mute and
+ * so on), the page puts an SVG in each, and the control still chooses
+ * which one shows. The markup document holds the glyphs; this sheet only
+ * says how a stroke is drawn.
+ */
+mattebox-player {
+  display: block;
+  --mbx-surface: #14161a;
+  --mbx-text: #eef0f2;
+  --mbx-muted: #9ba3ad;
+  --mbx-accent: #ffd166;
+  --mbx-radius: 6px;
+}
+
+/* The player sizes a slotted glyph like its own and fills it; a stroke
+   set turns the fill off and draws the lines in the text colour. */
+mattebox-player svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The play glyphs are solid, so they read at the start button's size. */
+mattebox-player svg[slot="icon-play"] {
+  fill: currentColor;
+}
+
+/* The number in the skip glyphs is text, not a stroke. */
+mattebox-player svg text {
+  fill: currentColor;
+  stroke: none;
+  font: 700 7px var(--mbx-font);
+  text-anchor: middle;
+}
+
+mbx-start-button::part(button) {
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+}
+
+mbx-start-button {
+  margin: -36px 0 0 -36px;
+}

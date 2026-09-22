@@ -6,6 +6,8 @@
  */
 import defaultCss from './default.css?raw';
 import defaultHtml from './default.html?raw';
+import outlineCss from './outline.css?raw';
+import outlineHtml from './outline.html?raw';
 import phoneCss from './phone.css?raw';
 import phoneHtml from './phone.html?raw';
 import reelCss from './reel.css?raw';
@@ -44,6 +46,14 @@ export const PRESETS: readonly Preset[] = [
       'Play and the skips in the middle of the picture, a thin bar with the seek bar over the time left, PiP and fullscreen. Try the 9:16 shape.',
     css: phoneCss,
     html: phoneHtml,
+  },
+  {
+    id: 'outline',
+    name: 'Outline',
+    description:
+      'Every glyph replaced by the page’s own, drawn in strokes: an SVG in the slot each control offers per state.',
+    css: outlineCss,
+    html: outlineHtml,
   },
   {
     id: 'reel',
