@@ -1,0 +1,1 @@
+import{t as e}from"./define-C3HjobKj.js";import{a as t,i as n,n as r,t as i}from"./tiers-DFrYwLQ-.js";var a=e(`dual-ts`,()=>[...n(),...r(),...i(),...t()]);export{a as default};

@@ -1,0 +1,1 @@
+import{t as e}from"./define-C3HjobKj.js";var t=e(`kernel`,()=>[]);export{t as default};
