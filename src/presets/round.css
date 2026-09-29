@@ -13,16 +13,25 @@ mattebox-player {
 }
 
 mbx-control-bar {
-  inset: auto 16px 16px;
+  top: auto;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
   padding: 6px 14px 10px;
-  gap: 2px;
   border-radius: 28px;
   background: rgba(16, 17, 20, 0.82);
   backdrop-filter: blur(12px);
 }
 
+/* 2px between the rows and 4px between the buttons, as margins: flex gap
+   needs Chromium 84. The row is wider by a button's margin on each side,
+   so the first and last buttons sit at its edges. */
 mbx-control-bar::part(buttons-row) {
-  gap: 4px;
+  margin: 2px -2px 0;
+}
+
+mbx-control-bar > :not([slot="seek"]) {
+  margin: 0 2px;
 }
 
 mbx-current-time,

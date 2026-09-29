@@ -26,10 +26,15 @@ mattebox-player {
   left: 50%;
   display: flex;
   align-items: center;
-  gap: 28px;
   transform: translate(-50%, -50%);
   color: var(--mbx-text);
   transition: opacity 0.2s;
+}
+
+/* 28px between the buttons, as margins on the middle one: flex gap needs
+   Chromium 84. The play button stays centred when the skips go. */
+.cluster mbx-play-button {
+  margin: 0 28px;
 }
 
 mattebox-player[idle] .cluster {
@@ -38,10 +43,15 @@ mattebox-player[idle] .cluster {
 }
 
 /* Below 250px the cluster would touch the edges, so the skips go and the
-   play button stays alone in the middle. */
+   play button stays alone in the middle. Chromium 76 drops the rule and
+   keeps the skips, which fit a TV. */
 @container (width < 250px) {
   .cluster mbx-skip-button {
     display: none;
+  }
+
+  .cluster mbx-play-button {
+    margin: 0;
   }
 }
 
@@ -73,18 +83,17 @@ mattebox-player[idle] .cluster {
    left of the row under it, two buttons at its right. */
 mbx-control-bar {
   padding: 24px 12px 6px;
-  gap: 0;
 }
 
-mbx-control-bar::part(seek-row) {
-  gap: 10px;
+mbx-control-bar::part(buttons-row) {
+  margin-top: 0;
 }
 
 /* The seek bar's rail sits 8px inside its slider, room for the thumb to
    overhang, so the time takes the same inset to start where the track
-   starts. */
+   starts. The row starts 4px out, for the buttons' margins, so 12px. */
 mbx-remaining-time {
-  margin-left: 8px;
+  margin-left: 12px;
   font-size: 12px;
 }
 
