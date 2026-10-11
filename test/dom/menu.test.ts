@@ -22,8 +22,14 @@ afterEach(() => {
   document.body.replaceChildren();
 });
 
-/** What the popover API dispatches: a toggle with the new state. */
+/**
+ * What the popover API does: it shows or hides the popover, then dispatches
+ * a toggle with the new state. jsdom has no `showPopover()`, and it hides a
+ * `[popover]` element and refuses focus inside a hidden one, so the test
+ * sets the display itself.
+ */
 function toggle(newState: 'open' | 'closed'): void {
+  popover.style.display = newState === 'open' ? 'block' : '';
   const event = new Event('toggle');
   Object.defineProperty(event, 'newState', { value: newState });
   popover.dispatchEvent(event);
