@@ -40,7 +40,7 @@ export class MbeCodeEditor extends HTMLElement {
       scrollBeyondLastLine: false,
       tabSize: 2,
       fontSize: 13,
-      theme: this.dark ? 'vs-dark' : 'vs',
+      theme: this.dark ? 'mattebox-dark' : 'mattebox-light',
       model: null,
     });
     this.editor.onDidChangeModelContent(() => {
@@ -101,7 +101,7 @@ export class MbeCodeEditor extends HTMLElement {
   /** Light or dark, to follow the page. */
   set theme(dark: boolean) {
     this.dark = dark;
-    this.editor?.updateOptions({ theme: dark ? 'vs-dark' : 'vs' });
+    this.editor?.updateOptions({ theme: dark ? 'mattebox-dark' : 'mattebox-light' });
   }
 
   override focus(): void {

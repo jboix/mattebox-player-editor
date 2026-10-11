@@ -53,4 +53,29 @@ self.MonacoEnvironment = {
   getWorker: (_id: string, label: string) => new (WORKERS[label] ?? EditorWorker)(),
 };
 
+// The page's two rooms, as editor themes: Monaco's own syntax colours over
+// the page's panel, so the code pane is the same surface as the pane around it.
+monaco.editor.defineTheme('mattebox-light', {
+  base: 'vs',
+  inherit: true,
+  rules: [],
+  colors: {
+    'editor.background': '#fbf8f3',
+    'editor.lineHighlightBackground': '#f3ede4',
+    'editorLineNumber.foreground': '#8a857d',
+    'editorLineNumber.activeForeground': '#2b2b30',
+  },
+});
+monaco.editor.defineTheme('mattebox-dark', {
+  base: 'vs-dark',
+  inherit: true,
+  rules: [],
+  colors: {
+    'editor.background': '#24242a',
+    'editor.lineHighlightBackground': '#2b2b30',
+    'editorLineNumber.foreground': '#7d786f',
+    'editorLineNumber.activeForeground': '#f3ede4',
+  },
+});
+
 export { monaco };

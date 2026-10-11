@@ -128,9 +128,9 @@ describe('<mbe-code-editor>', () => {
 
   it('follows the room', () => {
     element.theme = true;
-    expect(fake.editor.options.theme).toBe('vs-dark');
+    expect(fake.editor.options.theme).toBe('mattebox-dark');
     element.theme = false;
-    expect(fake.editor.options.theme).toBe('vs');
+    expect(fake.editor.options.theme).toBe('mattebox-light');
   });
 
   it('disposes the editor when it leaves the page', () => {

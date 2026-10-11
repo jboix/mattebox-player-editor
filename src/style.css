@@ -10,15 +10,15 @@
 :root {
   color-scheme: light;
 
-  --ground: #e6e4de;
-  --panel: #f2f1ec;
+  --ground: #f3ede4;
+  --panel: #fbf8f3;
   --field: #ffffff;
-  --ink: #16191c;
-  --ink-soft: #5f635f;
-  --rule: #c8c5bc;
-  --hinge: #16191c;
-  --accent: #2c6a58;
-  --danger: #b5301a;
+  --ink: #2b2b30;
+  --ink-soft: #5f5c5a;
+  --rule: #c9bfae;
+  --hinge: #2b2b30;
+  --accent: #b23a23;
+  --danger: #b23a23;
 
   --step: 0.75rem;
 
@@ -27,37 +27,37 @@
   --mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* The chevron on every select, drawn here so it sits where the padding says and not against the edge. */
-  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2316191c' stroke-width='1.6'/%3E%3C/svg%3E");
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%232b2b30' stroke-width='1.6'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --ground: #121416;
-    --panel: #1b1e22;
-    --field: #24282d;
-    --ink: #e8e4da;
-    --ink-soft: #9aa09c;
-    --rule: #2c3136;
-    --hinge: #454b52;
-    --accent: #7fd0b4;
-    --danger: #ff8a75;
-    --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23e8e4da' stroke-width='1.6'/%3E%3C/svg%3E");
+    --ground: #1c1c20;
+    --panel: #24242a;
+    --field: #2b2b30;
+    --ink: #f3ede4;
+    --ink-soft: #aaa49a;
+    --rule: #3a3a41;
+    --hinge: #4a4a52;
+    --accent: #f08068;
+    --danger: #f08068;
+    --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23f3ede4' stroke-width='1.6'/%3E%3C/svg%3E");
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --ground: #121416;
-  --panel: #1b1e22;
-  --field: #24282d;
-  --ink: #e8e4da;
-  --ink-soft: #9aa09c;
-  --rule: #2c3136;
-  --hinge: #454b52;
-  --accent: #7fd0b4;
-  --danger: #ff8a75;
-  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23e8e4da' stroke-width='1.6'/%3E%3C/svg%3E");
+  --ground: #1c1c20;
+  --panel: #24242a;
+  --field: #2b2b30;
+  --ink: #f3ede4;
+  --ink-soft: #aaa49a;
+  --rule: #3a3a41;
+  --hinge: #4a4a52;
+  --accent: #f08068;
+  --danger: #f08068;
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23f3ede4' stroke-width='1.6'/%3E%3C/svg%3E");
 }
 
 * {
@@ -102,6 +102,12 @@ mbe-preview:not(:defined) {
   gap: calc(var(--step) * 1.5);
   padding: 0.5rem calc(var(--step) * 2);
   border-bottom: 1px solid var(--rule);
+}
+
+/* The mark leads to the website. */
+.home {
+  display: flex;
+  flex: none;
 }
 
 .logo {
@@ -332,8 +338,19 @@ button.accent {
 }
 
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  padding: 0;
   color: var(--ink-soft);
   background: transparent;
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .github {
