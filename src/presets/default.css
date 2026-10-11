@@ -1,7 +1,8 @@
 /*
  * The player's look is page CSS. The tokens below are set on the element
  * and inherited by every control; ::part() rules reach inside a control.
- * These are the defaults. Change one and the preview follows.
+ * These are the defaults. Change one and the preview follows. The sizes
+ * are in em of the player's font size, so the controls grow with it.
  */
 mattebox-player {
   display: block;
@@ -11,12 +12,12 @@ mattebox-player {
   --mbx-accent: #e0543c;
   --mbx-error: #ffb4ab;
   --mbx-live: #ff4d4d;
-  --mbx-radius: 4px;
-  --mbx-gap: 10px;
-  --mbx-pad: 8px;
+  --mbx-radius: 0.25em;
+  --mbx-gap: 0.625em;
+  --mbx-pad: 0.5em;
   --mbx-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  /* The seek bar's thumbnail tile, in pixels. */
-  --mbx-preview-width: 160px;
+  /* The seek bar's thumbnail tile. */
+  --mbx-preview-width: 10em;
 }
 
 /* A control by its tag, its insides by their part. */

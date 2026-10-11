@@ -14,49 +14,49 @@ mattebox-player {
 
 mbx-control-bar {
   top: auto;
-  right: 16px;
-  bottom: 16px;
-  left: 16px;
-  padding: 6px 14px 10px;
-  border-radius: 28px;
+  right: 1em;
+  bottom: 1em;
+  left: 1em;
+  padding: 0.375em 0.875em 0.625em;
+  border-radius: 1.75em;
   background: rgba(16, 17, 20, 0.82);
   backdrop-filter: blur(12px);
 }
 
-/* 2px between the rows and 4px between the buttons, as margins: flex gap
+/* 0.125em between the rows and 0.25em between the buttons, as margins: flex gap
    needs Chromium 84. The row is wider by a button's margin on each side,
    so the first and last buttons sit at its edges. */
 mbx-control-bar::part(buttons-row) {
-  margin: 2px -2px 0;
+  margin: 0.125em -0.125em 0;
 }
 
 mbx-control-bar > :not([slot="seek"]) {
-  margin: 0 2px;
+  margin: 0 0.125em;
 }
 
 mbx-current-time,
 mbx-duration {
-  font-size: 13px;
+  font-size: 0.8125em;
 }
 
 mbx-play-button::part(button) {
-  width: 44px;
-  height: 44px;
+  width: 2.75em;
+  height: 2.75em;
   color: #101114;
   background: var(--mbx-accent);
 }
 
 mbx-seek-bar::part(track) {
-  height: 6px;
-  border-radius: 3px;
+  height: 0.375em;
+  border-radius: 0.1875em;
 }
 
 /* The border is part of the size, so the thumb stays centred on the track. */
 mbx-seek-bar::part(thumb) {
   box-sizing: border-box;
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
+  width: 1.125em;
+  height: 1.125em;
+  margin: -0.5625em 0 0 -0.5625em;
   border: 3px solid var(--mbx-text);
   background: var(--mbx-accent);
   box-shadow: none;
@@ -64,8 +64,8 @@ mbx-seek-bar::part(thumb) {
 
 /* The page's own glyphs are slotted children, sized like the built-in ones. */
 mbx-play-button svg {
-  width: 26px;
-  height: 26px;
+  width: 1.625em;
+  height: 1.625em;
   fill: currentColor;
 }
 
@@ -73,20 +73,20 @@ mbx-play-button svg {
    tooltip should not be: a chapter title in a pill runs into the curve. */
 mbx-subtitles-menu::part(popup),
 mbx-quality-menu::part(popup) {
-  border-radius: 16px;
-  padding: 8px;
+  border-radius: 1.1429em;
+  padding: 0.5714em;
 }
 
 mbx-seek-bar::part(preview) {
-  padding: 6px 12px;
-  border-radius: 14px;
+  padding: 0.4615em 0.9231em;
+  border-radius: 1.0769em;
 }
 
 mbx-subtitles-menu::part(item),
 mbx-quality-menu::part(item) {
-  border-radius: 10px;
+  border-radius: 0.7143em;
 }
 
 mbx-error-screen::part(retry) {
-  padding: 0 20px;
+  padding: 0 1.3333em;
 }

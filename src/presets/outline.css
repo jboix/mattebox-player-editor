@@ -11,7 +11,7 @@ mattebox-player {
   --mbx-text: #eef0f2;
   --mbx-muted: #9ba3ad;
   --mbx-accent: #ffd166;
-  --mbx-radius: 6px;
+  --mbx-radius: 0.375em;
 }
 
 /* The player sizes a slotted glyph like its own and fills it; a stroke
@@ -33,16 +33,16 @@ mattebox-player svg[slot="icon-play"] {
 mattebox-player svg text {
   fill: currentColor;
   stroke: none;
-  font: 700 7px var(--mbx-font);
+  font: 700 0.4375em var(--mbx-font);
   text-anchor: middle;
 }
 
 mbx-start-button::part(button) {
   border-radius: 50%;
-  width: 72px;
-  height: 72px;
+  width: 4.5em;
+  height: 4.5em;
 }
 
 mbx-start-button {
-  margin: -36px 0 0 -36px;
+  margin: -2.25em 0 0 -2.25em;
 }

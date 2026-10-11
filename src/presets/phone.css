@@ -31,10 +31,10 @@ mattebox-player {
   transition: opacity 0.2s;
 }
 
-/* 28px between the buttons, as margins on the middle one: flex gap needs
+/* 1.75em between the buttons, as margins on the middle one: flex gap needs
    Chromium 84. The play button stays centred when the skips go. */
 .cluster mbx-play-button {
-  margin: 0 28px;
+  margin: 0 1.75em;
 }
 
 mattebox-player[idle] .cluster {
@@ -57,65 +57,66 @@ mattebox-player[idle] .cluster {
 
 /* The backdrops are heavy enough that the picture does not show through. */
 .cluster mbx-play-button::part(button) {
-  width: 76px;
-  height: 76px;
+  width: 4.75em;
+  height: 4.75em;
   background: rgba(0, 0, 0, 0.7);
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .cluster mbx-play-button::part(icon) {
-  width: 40px;
-  height: 40px;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .cluster mbx-skip-button::part(button) {
-  width: 52px;
-  height: 52px;
+  width: 3.25em;
+  height: 3.25em;
   background: rgba(0, 0, 0, 0.7);
 }
 
 .cluster mbx-skip-button::part(icon) {
-  width: 28px;
-  height: 28px;
+  width: 1.75em;
+  height: 1.75em;
 }
 
 /* A thin bar: the seek bar alone on its row, the time and live at the
    left of the row under it, two buttons at its right. */
 mbx-control-bar {
-  padding: 24px 12px 6px;
+  padding: 1.5em 0.75em 0.375em;
 }
 
 mbx-control-bar::part(buttons-row) {
   margin-top: 0;
 }
 
-/* The seek bar's rail sits 8px inside its slider, room for the thumb to
+/* The seek bar's rail sits 0.5em inside its slider, room for the thumb to
    overhang, so the time takes the same inset to start where the track
-   starts. The row starts 4px out, for the buttons' margins, so 12px. */
+   starts. The row starts 0.25em out, for the buttons' margins, so 0.75em of
+   the player's size, which is 1em of this smaller text. */
 mbx-remaining-time {
-  margin-left: 12px;
-  font-size: 12px;
+  margin-left: 1em;
+  font-size: 0.75em;
 }
 
 mbx-seek-bar::part(track) {
-  height: 3px;
+  height: 0.1875em;
 }
 
 /* The radius token is a pill, which the seek bar's tooltip should not be:
    a chapter title in a pill runs into the curve. */
 mbx-seek-bar::part(preview) {
-  padding: 6px 12px;
-  border-radius: 12px;
+  padding: 0.4615em 0.9231em;
+  border-radius: 0.9231em;
 }
 
 mbx-seek-bar::part(thumb) {
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
+  width: 0.875em;
+  height: 0.875em;
+  margin: -0.4375em 0 0 -0.4375em;
 }
 
 mbx-pip-button::part(button),
 mbx-fullscreen-button::part(button) {
-  width: 36px;
-  height: 36px;
+  width: 2.25em;
+  height: 2.25em;
 }
