@@ -14,7 +14,7 @@ system on purpose. Its look is page CSS, through `::part()` and a few
 inherited tokens, and its controls are elements the page places inside it.
 So the editor edits exactly that, and what it exports is what a page pastes.
 
-Open the [hosted editor](https://jboix.github.io/mattebox-player-editor/),
+Open the [hosted editor](https://editor.mattebox.ch/),
 pick a preset, and change something.
 
 ## Quick start

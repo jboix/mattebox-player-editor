@@ -11,7 +11,7 @@
 import type { Source } from './markup.js';
 
 const ICONS = 'https://storage.googleapis.com/shaka-asset-icons';
-const CHAPTERS = 'https://jboix.github.io/mattebox-player/chapters';
+const CHAPTERS = 'https://demo.mattebox.ch/chapters';
 
 export interface Stream extends Source {
   readonly label: string;
