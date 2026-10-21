@@ -55,25 +55,38 @@ self.MonacoEnvironment = {
 
 // The page's two rooms, as editor themes: Monaco's own syntax colours over
 // the page's panel, so the code pane is the same surface as the pane around it.
+// Monaco's colours sit on white and black. On the panel some fall under the
+// 4.5:1 of WCAG AA, so each of those is the nearest shade of its hue that
+// reaches 4.6:1 on the panel and on the highlighted line. The last line
+// number is not dimmed, for the same reason.
 monaco.editor.defineTheme('mattebox-light', {
   base: 'vs',
   inherit: true,
-  rules: [],
+  rules: [
+    { token: 'attribute.name', foreground: 'd70000' },
+    { token: 'metatag.content.html', foreground: 'd70000' },
+    { token: 'number', foreground: '087a50' },
+    { token: 'attribute.value.number', foreground: '087a50' },
+    { token: 'attribute.value.unit', foreground: '087a50' },
+    { token: 'comment', foreground: '007c00' },
+  ],
   colors: {
     'editor.background': '#fbf8f3',
     'editor.lineHighlightBackground': '#f3ede4',
-    'editorLineNumber.foreground': '#8a857d',
+    'editorLineNumber.foreground': '#6e6a64',
+    'editorLineNumber.dimmedForeground': '#6e6a64',
     'editorLineNumber.activeForeground': '#2b2b30',
   },
 });
 monaco.editor.defineTheme('mattebox-dark', {
   base: 'vs-dark',
   inherit: true,
-  rules: [],
+  rules: [{ token: 'comment', foreground: '799e6a' }],
   colors: {
     'editor.background': '#24242a',
     'editor.lineHighlightBackground': '#2b2b30',
-    'editorLineNumber.foreground': '#7d786f',
+    'editorLineNumber.foreground': '#97938c',
+    'editorLineNumber.dimmedForeground': '#97938c',
     'editorLineNumber.activeForeground': '#f3ede4',
   },
 });

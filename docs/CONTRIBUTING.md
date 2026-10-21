@@ -22,6 +22,7 @@ npm run dev       # the page, at the URL Vite prints
 | `npm run depcruise`  | dependency-cruiser | The runtime dependency list, the player's entries, cycles |
 | `npm run knip`       | knip               | Dead code, unused exports and dependencies                |
 | `npm run build`      | Vite               | The page builds                                           |
+| `npm run check:a11y` | axe-core           | The built page, its menus and dialog, WCAG 2.2 A and AA   |
 | `npm run test`       | Vitest             | Node tests, and the elements under jsdom                  |
 
 The player repository has gates this one does not, on purpose: no emit

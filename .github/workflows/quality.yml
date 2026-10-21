@@ -45,6 +45,11 @@ jobs:
         run: npm run knip
       - name: Build
         run: npm run build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      # axe-core over the built page, in each state and both schemes.
+      - name: Accessibility
+        run: npm run check:a11y
       - name: Tests (with coverage)
         run: npm run test -- --coverage
       - name: Report Coverage
