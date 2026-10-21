@@ -45,7 +45,8 @@ The editor runs on the published `@mattebox/player`, its diagnostics and the
 
 See the [contributing guide](docs/CONTRIBUTING.md). Participation is governed
 by the [Code of Conduct](docs/CODE_OF_CONDUCT.md). Vulnerabilities go through
-[SECURITY.md](docs/SECURITY.md).
+[SECURITY.md](docs/SECURITY.md). Barriers for people with disabilities go
+through the [accessibility statement](docs/ACCESSIBILITY.md).
 
 ## License
 
