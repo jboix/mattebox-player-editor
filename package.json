@@ -42,9 +42,9 @@
     "docs:format": "remark . --quiet --output"
   },
   "dependencies": {
-    "@mattebox/player": "^0.9.1",
-    "@mattebox/player-diagnostics": "^0.7.0",
-    "mattebox": "^0.14.0",
+    "@mattebox/player": "^0.10.0",
+    "@mattebox/player-diagnostics": "^0.8.0",
+    "mattebox": "^0.15.0",
     "monaco-editor": "^0.57.0"
   },
   "devDependencies": {
