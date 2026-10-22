@@ -1,0 +1,1 @@
+import{t as e}from"./define-DcqCNBNh.js";import{a as t,c as n,n as r,t as i}from"./tiers-s-YIGHvv.js";var a=e(`dual-ts`,()=>[...t(),...r(),...i(),...n()]);export{a as default};
