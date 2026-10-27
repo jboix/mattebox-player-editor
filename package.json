@@ -26,7 +26,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "verify": "npm run lint && npm run docs:check && npm run typecheck && npm run depcruise && npm run knip && npm run build && npm run check:a11y && npm run test",
+    "verify": "npm run check:lock && npm run lint && npm run docs:check && npm run typecheck && npm run depcruise && npm run knip && npm run build && npm run check:a11y && npm run test",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -39,7 +39,8 @@
     "test:node": "vitest run --project=node",
     "test:dom": "vitest run --project=dom",
     "docs:check": "remark . --quiet --frail --use ./scripts/remark-check-formatted.mjs",
-    "docs:format": "remark . --quiet --output"
+    "docs:format": "remark . --quiet --output",
+    "check:lock": "npm ci --dry-run --ignore-scripts --no-audit --no-fund"
   },
   "dependencies": {
     "@mattebox/player": "^0.11.0",
