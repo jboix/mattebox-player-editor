@@ -1,0 +1,1 @@
+import{t as e}from"./define-SaTvGsPU.js";import{n as t,t as n}from"./tiers-BIz3HpVw.js";var r=e(`dash`,()=>[...t(),...n()]);export{r as default};
